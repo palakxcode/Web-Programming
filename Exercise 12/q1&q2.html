@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pond Scene with Boat Animation</title>
+</head>
+<body>
+  <canvas id="sceneCanvas" width="800" height="500" style="border:1px solid black;"></canvas>
+
+  <script>
+    const canvas = document.getElementById("sceneCanvas");
+    const ctx = canvas.getContext("2d");
+
+    let boatX = 340;
+    let boatDirection = 1;
+
+    function drawScene() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Sky
+      ctx.fillStyle = "#ADD8E6";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Sun
+      ctx.beginPath();
+      ctx.arc(700, 80, 40, 0, 2 * Math.PI);
+      ctx.fillStyle = "yellow";
+      ctx.fill();
+      for (let i = 0; i < 360; i += 30) {
+        let rad = i * Math.PI / 180;
+        let x = 700 + 60 * Math.cos(rad);
+        let y = 80 + 60 * Math.sin(rad);
+        ctx.beginPath();
+        ctx.moveTo(700, 80);
+        ctx.lineTo(x, y);
+        ctx.strokeStyle = "yellow";
+        ctx.stroke();
+      }
+
+      // House
+      ctx.fillStyle = "red";
+      ctx.beginPath();
+      ctx.moveTo(120, 150);
+      ctx.lineTo(200, 80);
+      ctx.lineTo(280, 150);
+      ctx.closePath();
+      ctx.fill();
+
+      ctx.fillStyle = "orange";
+      ctx.fillRect(140, 150, 120, 100);
+
+      ctx.fillStyle = "brown";
+      ctx.fillRect(185, 190, 30, 60);
+
+      ctx.fillStyle = "blue";
+      ctx.fillRect(150, 160, 20, 20);
+
+      // Pond
+      ctx.beginPath();
+      ctx.ellipse(400, 220, 150, 80, 0, 0, 2 * Math.PI);
+      ctx.fillStyle = "#87CEEB";
+      ctx.fill();
+
+      // Boat
+      ctx.beginPath();
+      ctx.moveTo(boatX, 220);
+      ctx.lineTo(boatX + 40, 220);
+      ctx.lineTo(boatX + 30, 235);
+      ctx.lineTo(boatX + 10, 235);
+      ctx.closePath();
+      ctx.fillStyle = "brown";
+      ctx.fill();
+
+      // Flower stem
+      ctx.fillStyle = "green";
+      ctx.fillRect(650, 260, 10, 50);
+
+      // Flower petals
+      ctx.beginPath();
+      ctx.arc(655, 250, 30, 0, 2 * Math.PI);
+      ctx.fillStyle = "pink";
+      ctx.fill();
+
+      // Flower center
+      ctx.beginPath();
+      ctx.arc(655, 250, 10, 0, 2 * Math.PI);
+      ctx.fillStyle = "yellow";
+      ctx.fill();
+
+      // Duck
+      ctx.beginPath();
+      ctx.arc(580, 280, 20, 0, 2 * Math.PI);
+      ctx.fillStyle = "yellow";
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.arc(600, 270, 10, 0, 2 * Math.PI);
+      ctx.fillStyle = "yellow";
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.moveTo(610, 270);
+      ctx.lineTo(620, 265);
+      ctx.lineTo(620, 275);
+      ctx.closePath();
+      ctx.fillStyle = "orange";
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.arc(598, 268, 2, 0, 2 * Math.PI);
+      ctx.fillStyle = "black";
+      ctx.fill();
+
+      // Rocks
+      ctx.fillStyle = "gray";
+      ctx.beginPath();
+      ctx.arc(100, 270, 15, 0, 2 * Math.PI);
+      ctx.fill();
+      ctx.beginPath();
+      ctx.arc(115, 275, 10, 0, 2 * Math.PI);
+      ctx.fill();
+      ctx.beginPath();
+      ctx.arc(90, 280, 8, 0, 2 * Math.PI);
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.arc(660, 320, 15, 0, 2 * Math.PI);
+      ctx.fill();
+      ctx.beginPath();
+      ctx.arc(675, 325, 10, 0, 2 * Math.PI);
+      ctx.fill();
+      ctx.beginPath();
+      ctx.arc(655, 330, 8, 0, 2 * Math.PI);
+      ctx.fill();
+    }
+
+    function animateBoat() {
+      drawScene();
+      boatX += boatDirection;
+      if (boatX > 450 || boatX < 330) boatDirection *= -1;
+      requestAnimationFrame(animateBoat);
+    }
+
+    animateBoat();
+  </script>
+</body>
+</html>

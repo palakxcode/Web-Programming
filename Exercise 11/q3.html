@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JavaScript Form Validation</title>
+  <style>
+    body {
+      font-family: Arial;
+    }
+    .error {
+      color: red;
+      font-size: 12px;
+    }
+    input[type="text"], input[type="password"], select {
+      width: 200px;
+      margin-bottom: 5px;
+    }
+    fieldset {
+      width: 500px;
+    }
+    #clock {
+      float: right;
+      border: 1px solid black;
+      padding: 5px;
+    }
+  </style>
+</head>
+<body onload="startTime()">
+  <fieldset>
+    <legend><b>Test JavaScript Form Validataion</b></legend>
+    <div id="clock">Time:</div><br><br>
+
+    <form name="myForm" onsubmit="return validateForm()">
+      Name*<br>
+      <input type="text" id="name">
+      <span class="error" id="nameErr"></span><br>
+
+      Address<br>
+      <input type="text" id="address"><br>
+
+      Zip Code*<br>
+      <input type="text" id="zip"><br>
+
+      Country*<br>
+      <select id="country">
+        <option value="">Please select...</option>
+        <option value="India">India</option>
+        <option value="USA">USA</option>
+      </select><br>
+
+      Gender*<br>
+      <input type="radio" name="gender" value="Male">Male
+      <input type="radio" name="gender" value="Female">Female<br>
+
+      Preferences*<br>
+      <input type="checkbox" name="pref" value="Red">Red
+      <input type="checkbox" name="pref" value="Green">Green
+      <input type="checkbox" name="pref" value="Blue">Blue<br>
+
+      Phone*<br>
+      <input type="text" id="phone"><br>
+
+      Email*<br>
+      <input type="text" id="email"><br>
+
+      Password (6-15 characters)*<br>
+      <input type="password" id="password"><br>
+
+      Verify Password*<br>
+      <input type="password" id="vpassword"><br><br>
+
+      Pan No:<br>
+      <input type="text" id="pan"><br><br>
+
+      <input type="submit" value="SEND">
+      <input type="reset" value="CLEAR">
+    </form>
+  </fieldset>
+
+  <script>
+    function startTime() {
+      setInterval(() => {
+        const now = new Date();
+        document.getElementById("clock").innerText = "Time: " + now.toLocaleTimeString();
+      }, 1000);
+    }
+
+    function validateForm() {
+      let valid = true;
+      const name = document.getElementById("name").value;
+      const zip = document.getElementById("zip").value;
+      const country = document.getElementById("country").value;
+      const phone = document.getElementById("phone").value;
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      const vpassword = document.getElementById("vpassword").value;
+      const pan = document.getElementById("pan").value;
+
+      const gender = document.querySelector('input[name="gender"]:checked');
+      const pref = document.querySelectorAll('input[name="pref"]:checked');
+
+      document.getElementById("nameErr").innerText = "";
+
+      if (name.trim() === "") {
+        document.getElementById("nameErr").innerText = "Please enter your name!";
+        valid = false;
+      }
+
+      if (zip === "" || isNaN(zip)) {
+        alert("Enter a valid Zip Code.");
+        valid = false;
+      }
+
+      if (country === "") {
+        alert("Please select a country.");
+        valid = false;
+      }
+
+      if (!gender) {
+        alert("Please select your gender.");
+        valid = false;
+      }
+
+      if (pref.length === 0) {
+        alert("Please select at least one preference.");
+        valid = false;
+      }
+
+      if (phone.length < 10 || isNaN(phone)) {
+        alert("Enter a valid phone number.");
+        valid = false;
+      }
+
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailPattern.test(email)) {
+        alert("Enter a valid email address.");
+        valid = false;
+      }
+
+      const passPattern = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[^a-zA-Z0-9]).{6,15}$/;
+      if (!passPattern.test(password)) {
+        alert("Password must be 6-15 characters and include a letter, number, and special character.");
+        valid = false;
+      }
+
+      if (password !== vpassword) {
+        alert("Passwords do not match.");
+        valid = false;
+      }
+
+      const panPattern = /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/;
+      if (!panPattern.test(pan)) {
+        alert("Enter a valid PAN number (e.g., ABCDE1234F).");
+        valid = false;
+      }
+
+      return valid;
+    }
+  </script>
+</body>
+</html>

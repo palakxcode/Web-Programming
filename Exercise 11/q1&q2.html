@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Event Handling Exercise</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    .section {
+      margin-bottom: 40px;
+    }
+  </style>
+</head>
+<body>
+  <div class="section" id="dynamic-table"></div>
+
+  <div class="section" id="element-events"></div>
+
+  <div class="section">
+    <input type="text" id="inputText">
+    <button id="addBtn">Add to List</button>
+    <ul id="itemList"></ul>
+  </div>
+
+  <div class="section">
+    <input type="text" id="keyInput">
+    <input type="text" id="keyCount" readonly>
+  </div>
+
+  <div class="section">
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+    <button id="reset">Reset</button>
+    <div id="stopwatch">0</div>
+  </div>
+
+  <div class="section">
+    <input type="date" id="dob">
+    <p id="age"></p>
+  </div>
+
+  <div class="section">
+    <textarea id="textarea" rows="4" cols="40"></textarea>
+    <p>Characters: <span id="charCount">0</span></p>
+  </div>
+
+  <script>
+    let table = document.createElement("table");
+    table.border = "1";
+    for (let i = 0; i < 3; i++) {
+      let row = document.createElement("tr");
+      for (let j = 0; j < 3; j++) {
+        let cell = document.createElement("td");
+        cell.textContent = `(${i + 1}, ${j + 1})`;
+        row.appendChild(cell);
+      }
+      table.appendChild(row);
+    }
+    document.getElementById("dynamic-table").appendChild(table);
+
+    let btn = document.createElement("button");
+    btn.textContent = "Hover me";
+    btn.style.backgroundColor = "red";
+    btn.onmouseover = () => btn.style.backgroundColor = "green";
+    document.getElementById("element-events").appendChild(btn);
+
+    let textbox = document.createElement("input");
+    textbox.type = "text";
+    textbox.style.backgroundColor = "green";
+    textbox.onfocus = () => textbox.style.backgroundColor = "yellow";
+    textbox.onchange = () => alert("Hello!");
+    document.getElementById("element-events").appendChild(textbox);
+
+    document.getElementById("addBtn").ondblclick = () => {
+      let value = document.getElementById("inputText").value;
+      let li = document.createElement("li");
+      li.textContent = value;
+      document.getElementById("itemList").appendChild(li);
+    };
+
+    let keyCounter = 0;
+    document.getElementById("keyInput").addEventListener("keydown", () => {
+      keyCounter++;
+      document.getElementById("keyCount").value = keyCounter;
+    });
+
+    let stopwatch = document.getElementById("stopwatch");
+    let time = 0;
+    let interval = null;
+    document.getElementById("start").onclick = () => {
+      if (!interval) {
+        interval = setInterval(() => {
+          time++;
+          stopwatch.textContent = time;
+        }, 1000);
+      }
+    };
+    document.getElementById("stop").onclick = () => {
+      clearInterval(interval);
+      interval = null;
+    };
+    document.getElementById("reset").onclick = () => {
+      clearInterval(interval);
+      interval = null;
+      time = 0;
+      stopwatch.textContent = time;
+    };
+
+    document.getElementById("dob").addEventListener("mouseover", () => {
+      let dob = new Date(document.getElementById("dob").value);
+      let age = new Date().getFullYear() - dob.getFullYear();
+      document.getElementById("age").textContent = `Age: ${age}`;
+    });
+
+    document.getElementById("textarea").addEventListener("input", () => {
+      document.getElementById("charCount").textContent = document.getElementById("textarea").value.length;
+    });
+  </script>
+</body>
+</html>

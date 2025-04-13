@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Form</title>
+</head>
+<body>
+    <form>
+        <fieldset width="500">
+        <fieldset>
+            <legend><b>Login</b></legend>
+            <label>Username*: <input type="text" name="username" required></label><br><br>
+            <label>Password*: <input type="password" name="password" required></label>
+        </fieldset>
+        <br>
+
+        <fieldset>
+            <legend><b>Gender*</b></legend>
+            <label><input type="radio" name="gender" value="male" required> Male</label>
+            <label><input type="radio" name="gender" value="female"> Female</label>
+        </fieldset>
+        <br>
+
+        <fieldset>
+            <legend><b>Programming Skill</b></legend>
+            <label><input type="checkbox" name="skill" value="Java"> Java</label>
+            <label><input type="checkbox" name="skill" value="C++" checked> C++</label>
+            <label><input type="checkbox" name="skill" value="C#"> C#</label>
+        </fieldset>
+        <br>
+
+        <fieldset>
+            <legend><b>Fruit</b></legend>
+            <label>Choose a fruit:
+                <select name="fruit">
+                    <optgroup label="Pome">
+                        <option>Apple</option>
+                        <option>Pear</option>
+                    </optgroup>
+                    <optgroup label="Citrus">
+                        <option>Orange</option>
+                        <option>Grapefruit</option>
+                        <option>Mandarin</option>
+                        <option>Lime</option>
+                    </optgroup>
+                    <optgroup label="Stone">
+                        <option>Nectarine</option>
+                        <option>Apricot</option>
+                        <option>Peach</option>
+                        <option>Plum</option>
+                    </optgroup>
+                    <optgroup label="Exotic">
+                        <option selected>Banana</option>
+                        <option>Mango</option>
+                    </optgroup>
+                    <optgroup label="Berries">
+                        <option>Strawberries</option>
+                        <option>Raspberries</option>
+                        <option>Blueberries</option>
+                        <option>Kiwifruit</option>
+                        <option>Passionfruit</option>
+                    </optgroup>
+                    <optgroup label="Melons">
+                        <option>Watermelon</option>
+                        <option>Rockmelon</option>
+                        <option>Honeydew</option>
+                    </optgroup>
+                </select>
+            </label>
+        </fieldset>
+        <br>
+
+        <textarea rows="4" cols="50" placeholder="Enter your comment here"></textarea><br><br>
+
+        <input type="submit" value="SEND">
+        <input type="reset" value="RESET">
+    </fieldset>
+    </form><br>
+    

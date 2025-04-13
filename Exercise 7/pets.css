@@ -1,0 +1,33 @@
+body {
+    text-align: center;
+    font-family: sans-serif;
+    background-image: url('image.png'); 
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+  
+  .rainbow {
+    font-size: 2em;
+    background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: rainbowFade 4s linear infinite;
+  }
+  
+  @keyframes rainbowFade {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+  }
+  
+  .description {
+    column-count: 2;
+    line-height: 30pt;
+    margin: 20px;
+    color: #333;
+  }
+  
+  .playground {
+    margin-top: 50px;
+  }
+  

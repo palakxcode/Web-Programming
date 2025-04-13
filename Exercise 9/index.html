@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>23BCE1407 - JS Advanced</title>
+  <style>
+    table, th, td { border: 1px solid black; border-collapse: collapse; padding: 5px; }
+    table { margin-top: 10px; }
+    .section { margin: 30px 0; }
+  </style>
+</head>
+<body>
+  <h1>Palak Ramani - 23BCE1407</h1>
+
+  <div class="section">
+    <h2>1. Daily Temperature Categorization</h2>
+    <button onclick="classifyTemperatures()">Show Temperature Analysis</button>
+    <div id="tempTable"></div>
+  </div>
+
+  <!-- Program 2: Airline Seat Reservation -->
+  <div class="section">
+    <h2>2. Airline Seat Reservation System</h2>
+    <button onclick="bookSeat()">Book a Seat</button>
+    <div id="boardingPass"></div>
+  </div>
+
+  <!-- Program 3: BMI Calculator -->
+  <div class="section">
+    <h2>BMI Calculator</h2>
+    <table border="1" cellpadding="5">
+      <tr>
+        <th colspan="2">
+          BMI Calculator
+          <select id="gender">
+            <option>Male</option>
+            <option>Female</option>
+          </select>
+        </th>
+      </tr>
+      <tr>
+        <td colspan="2">Enter Your Weight:<br>(in pounds)</td>
+      </tr>
+      <tr>
+        <td colspan="2"><input type="number" id="weight" /></td>
+      </tr>
+      <tr>
+        <td colspan="2">Enter Your Height:</td>
+      </tr>
+      <tr>
+        <td>(feet)<br><input type="number" id="feet" /></td>
+        <td>(inches)<br><input type="number" id="inches" /></td>
+      </tr>
+      <tr>
+        <td colspan="2" style="text-align: center;">
+          <button onclick="calculateBMI()">Calculate</button>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">YOUR BMI<br><input type="text" id="bmiResult" readonly /></td>
+      </tr>
+    </table>
+  </div>
+
+  <script>
+    // 1. Temperature Classification
+    function classifyTemperatures() {
+      const temps = [55,62,68,74,59,45,41,58,60,67,65,78,82,88,91,92,90,93,87,80,78,79,72,68,61,59,55,65];
+      let hot = 0, pleasant = 0, cold = 0;
+      let tableHTML = "<table><tr><th>Temperature</th><th>Category</th></tr>";
+
+      temps.forEach(temp => {
+        let category = "";
+        if (temp >= 85) {
+          category = "HOT"; hot++;
+        } else if (temp >= 60 && temp <= 84) {
+          category = "PLEASANT"; pleasant++;
+        } else {
+          category = "COLD"; cold++;
+        }
+        tableHTML += `<tr><td>${temp}°F</td><td>${category}</td></tr>`;
+      });
+
+      tableHTML += "</table>";
+      tableHTML += `<p><strong>HOT Days:</strong> ${hot}, <strong>PLEASANT Days:</strong> ${pleasant}, <strong>COLD Days:</strong> ${cold}</p>`;
+      document.getElementById("tempTable").innerHTML = tableHTML;
+    }
+
+    // 2. Airline Seat Reservation
+    const seats = Array(10).fill(0); // All seats empty
+    function bookSeat() {
+      const name = prompt("Enter your name:");
+      const choice = parseInt(prompt("Enter 1 for First Class or 2 for Economy:"));
+
+      let seatIndex = -1;
+
+      if (choice === 1) {
+        seatIndex = seats.findIndex((val, idx) => val === 0 && idx < 5);
+        if (seatIndex === -1) {
+          if (confirm("First Class full. Book Economy?")) {
+            seatIndex = seats.findIndex((val, idx) => val === 0 && idx >= 5);
+          }
+        }
+      } else if (choice === 2) {
+        seatIndex = seats.findIndex((val, idx) => val === 0 && idx >= 5);
+        if (seatIndex === -1) {
+          if (confirm("Economy full. Book First Class?")) {
+            seatIndex = seats.findIndex((val, idx) => val === 0 && idx < 5);
+          }
+        }
+      }
+
+      if (seatIndex !== -1) {
+        seats[seatIndex] = 1;
+        const seatClass = seatIndex < 5 ? "First Class" : "Economy";
+        document.getElementById("boardingPass").innerHTML = `
+          <p><strong>Boarding Pass</strong></p>
+          <p>Name: ${name}</p>
+          <p>Seat Number: ${seatIndex + 1}</p>
+          <p>Class: ${seatClass}</p>
+        `;
+      } else {
+        alert("Sorry, the flight is fully booked.");
+      }
+    }
+
+    // 3. BMI Calculator
+    function calculateBMI() {
+    const weight = parseFloat(document.getElementById("weight").value);
+    const feet = parseFloat(document.getElementById("feet").value);
+    const inches = parseFloat(document.getElementById("inches").value);
+    const heightInInches = (feet * 12) + inches;
+
+    if (weight > 0 && heightInInches > 0) {
+      const bmi = (703 * weight) / (heightInInches * heightInInches);
+      let status = "";
+
+      if (bmi < 18.5) status = "Underweight";
+      else if (bmi < 25) status = "Ideal Range";
+      else if (bmi < 30) status = "Overweight";
+      else status = "Obese";
+
+      document.getElementById("bmiResult").value = bmi.toFixed(2);
+      alert(`Your BMI is ${bmi.toFixed(2)} – ${status}`);
+    } else {
+      alert("Please enter valid height and weight.");
+    }
+  }
+  </script>
+</body>
+</html>

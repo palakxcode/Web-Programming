@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Resume Form</title>
+</head>
+<body>
+    <form>
+        <fieldset>
+            <legend style="color:red;"><b>Personal Details</b></legend>
+            Name: <input type="text" name="name"><br><br>
+            Password: <input type="password" name="password"><br><br>
+            E-mail id: <input type="email" name="email"><br><br>
+            Gender:
+            <input type="radio" name="gender" value="Male"> Male
+            <input type="radio" name="gender" value="Female"> Female<br><br>
+            DOB: <input type="date" name="dob"><br><br>
+            Mobile #: <input type="tel" name="mobile"><br>
+        </fieldset>
+        <br>
+
+        <fieldset>
+            <legend style="color:red;"><b>Educational Qualification</b></legend>
+            Degree:
+            <select name="degree">
+                <optgroup label="UG">
+                    <option>BE</option>
+                    <option>BTech</option>
+                    <option>BSc</option>
+                    <option>BA</option>
+                    <option>BCA</option>
+                    <option>BBA</option>
+                    <option>Others</option>
+                </optgroup>
+                <optgroup label="PG">
+                    <option>ME</option>
+                    <option>MTech</option>
+                    <option>MSc</option>
+                    <option>MA</option>
+                    <option>MCA</option>
+                    <option>MBA</option>
+                    <option>Others</option>
+                </optgroup>
+                <optgroup label="PhD">
+                    <option>Engineering</option>
+                    <option>Science</option>
+                    <option>Management</option>
+                    <option>Others</option>
+                </optgroup>
+            </select>
+
+            Engineering:
+            <select name="branch">
+                <option>-- Select Group --</option>
+                <option>CSE</option>
+                <option>ECE</option>
+                <option>EEE</option>
+                <option>CIVIL</option>
+                <option>MECH</option>
+            </select><br><br>
+
+            Hobbies:
+            <input type="checkbox" name="hobby" value="chess"> Playing chess
+            <input type="checkbox" name="hobby" value="books"> Reading Books<br><br>
+
+            Favourite Color: <input type="color" name="favcolor">
+        </fieldset>
+        <br>
+
+        <fieldset>
+            <legend style="color:red;"><b>Address</b></legend>
+            <textarea rows="4" cols="50" placeholder="Enter your address here"></textarea><br><br>
+            Attach Resume: <input type="file" name="resume"><br><br>
+            <input type="submit" value="Submit">
+        </fieldset>
+    </form>
+</body>
+</html>

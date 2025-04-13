@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>23BCE5072</title> <!-- Replace with your register number -->
+  <style>
+   
+    li:first-letter {
+      text-transform: uppercase;
+    }
+    .calc {
+      margin-top: 30px;
+      font-family: 'Courier New', Courier, monospace;
+      background-color: #f0f0f0;
+      border: 2px solid #333;
+      border-radius: 10px;
+      padding: 10px;
+      display: inline-block;
+    }
+
+    .calc button {
+      width: 50px;
+      height: 50px;
+      font-size: 18px;
+      background-color: #d9d9d9;
+      border: none;
+      margin: 5px;
+      cursor: pointer;
+      border-radius: 8px;
+    }
+
+    .calc button:hover {
+      background-color: #ffcc00;
+      color: white;
+    }
+    .myphto {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 2px solid purple;
+      animation: titleGlow 5s infinite;
+    }
+
+    @keyframes titleGlow {
+      0% {
+        color: purple;
+        font-size: 16px;
+      }
+      50% {
+        color: orange;
+        font-size: 20px;
+      }
+      100% {
+        color: green;
+        font-size: 16px;
+      }
+    }
+
+    h2.photo-title {
+      font-family: 'Georgia', serif;
+      animation: titleGlow 5s infinite;
+    }
+
+  </style>
+</head>
+<body>
+  <h2>1. Inline CSS Table + Pseudo-class</h2>
+  <table border="1" style="border-collapse: collapse; width: 50%; text-align: center; font-family: Arial; background-color: #e6f2ff;">
+    <tr style="background-color: #b3d9ff;">
+      <th style="padding: 10px;">Course</th>
+      <th style="padding: 10px;">Topic</th>
+    </tr>
+    <tr>
+      <td style="padding: 10px;">BCSE203E</td>
+      <td style="padding: 10px;">CSS Styling</td>
+    </tr>
+  </table>
+
+  <h3>LEARN DATA SCIENCE!</h3>
+  <ul>
+    <li>unlimited jobs</li>
+    <li>best benefits anywhere</li>
+    <li>call now for an appointment</li>
+  </ul>
+  <h2>2. Calculator</h2>
+  <table class="calc">
+    <tr>
+      <td colspan="4"><input type="text" id="display" readonly></td>
+    </tr>
+    <tr>
+      <td><button class="btn">7</button></td>
+      <td><button class="btn">8</button></td>
+      <td><button class="btn">9</button></td>
+      <td><button class="btn">/</button></td>
+    </tr>
+    <tr>
+      <td><button class="btn">4</button></td>
+      <td><button class="btn">5</button></td>
+      <td><button class="btn">6</button></td>
+      <td><button class="btn">*</button></td>
+    </tr>
+    <tr>
+      <td><button class="btn">1</button></td>
+      <td><button class="btn">2</button></td>
+      <td><button class="btn">3</button></td>
+      <td><button class="btn">-</button></td>
+    </tr>
+    <tr>
+      <td><button class="btn">0</button></td>
+      <td><button class="btn">C</button></td>
+      <td><button class="btn">=</button></td>
+      <td><button class="btn">+</button></td>
+    </tr>
+  </table>
+
+  <!-- PART 3: Favourite Singer Photo -->
+  <h2 class="photo-title">3. My Favourite Singer</h2>
+  <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQ44ed-8dHNt0neIS1vq4Q1L_qQPrYzEO5qkpjyiwQJOOMEO89K" alt="My Favourite Singer" class="myphto">
+
+</body>
+</html>
