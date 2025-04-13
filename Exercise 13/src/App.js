@@ -125,7 +125,7 @@ export default function App() {
       <ReverseString str="madam" />
       <RandomNumber />
       <LeapYearCheck year={2024} />
-      <UserGreeting firstName="shaurya" lastName="agarwal" />
+      <UserGreeting firstName="palak" lastName="ramani" />
     </div>
   );
 }
